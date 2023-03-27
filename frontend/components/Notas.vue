@@ -7,9 +7,7 @@
         class="elevation-1"
       >
         <template slot="items" slot-scope="props">
-            <td>{{ props.item.name}}</td>
-            <td class="text-xs-right">{{ props.item.countnotas }}</td>
-            <td class="text-xs-right">{{ props.item.maisantiga }}</td>
+            <td>{{ props.item.description}}</td>
         </template>
       </v-data-table>
   </v-layout>
@@ -24,15 +22,15 @@ export default {
     return {
         notas:[],
         headers: [
-            { text: 'Nome', value: 'name' },
-            { text: 'Quantidade de notas', value: 'countnotas' },
-            { text: 'Mais Antiga', value: 'maisantiga' },
+            { text: 'Notas', value: 'name' },
+            // { text: 'Quantidade de notas', value: 'countnotas' },
+            // { text: 'Mais Antiga', value: 'maisantiga' },
         ]
     }
   },
   created(){
-    AppApi.list_notas().then(response => {
-        this.notas = response.data
+    AppApi.list_todos().then(response => {
+        this.notas = response.data['todos']
     })
   }
 }
